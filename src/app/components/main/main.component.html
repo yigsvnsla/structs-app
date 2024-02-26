@@ -1,0 +1,14 @@
+<main tuiNavigationMain>
+  <ng-content></ng-content>
+  <div
+    *tuiRepeatTimes="let index of 10"
+    tuiCardLarge
+    tuiHeader
+    tuiSurface="elevated"
+  >
+    <h2 tuiTitle>
+      Some random content
+      <span tuiSubtitle>A subtitle</span>
+    </h2>
+  </div>
+</main>

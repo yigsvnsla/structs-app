@@ -1,0 +1,7 @@
+section.dashboard-wrapper {
+  display: flex;
+  height: calc(100dvh - 48px);
+  app-main {
+    width: 100%;
+  }
+}

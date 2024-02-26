@@ -1,0 +1,55 @@
+<aside [tuiNavigationAside]="getExpanded()">
+  <button iconLeft="tuiIconSearch" tuiButton>Search</button>
+  <button iconLeft="tuiIconUsers" tuiAppearance="flat" tuiButton>Groups</button>
+  <tui-hosted-dropdown
+    [canOpen]="!getExpanded()"
+    [content]="dropdown"
+    [sided]="true"
+    [open]="getOpen()"
+  >
+    <button
+      iconLeft="tuiIconSettings"
+      iconRight="tuiIconChevronDown"
+      tuiAppearance="flat"
+      tuiButton
+      [tuiAppearanceState]="getOpen() ? 'hover' : null"
+    >
+      <!-- (click)="getSubmenu() = getExpanded() && !getSubmenu()" -->
+
+      Settings
+    </button>
+    <ng-template #dropdown>
+      <tui-data-list size="s">
+        <button tuiOption>Account</button>
+        <button tuiOption>Notifications</button>
+        <button tuiOption>Privacy</button>
+      </tui-data-list>
+    </ng-template>
+  </tui-hosted-dropdown>
+
+  <tui-expand [expanded]="getExpanded() && getSubmenu()">
+    <ng-template tuiExpandContent>
+      <button tuiButton>Account</button>
+      <button tuiButton>Notifications</button>
+      <button tuiButton>Privacy</button>
+    </ng-template>
+  </tui-expand>
+  <button iconLeft="tuiIconHeart" tuiButton>
+    <span tuiFade>By default ellipsis is used but you can use fade too</span>
+  </button>
+  <hr />
+  <button iconLeft="tuiIconPlus" tuiButton>Add</button>
+
+  <footer>
+    <button iconLeft="tuiIconStar" tuiButton>Favorites</button>
+    <button
+      tuiButton
+      [iconLeft]="'tuiIconChevronRight'"
+      [iconLeft]="getExpanded() ? 'tuiIconChevronLeft' : 'tuiIconChevronRight'"
+    >
+       <!-- (click)="expanded = !expanded" -->
+
+      Collapse
+    </button>
+  </footer>
+</aside>

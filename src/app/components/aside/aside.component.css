@@ -1,0 +1,6 @@
+aside {
+  height: 100%;
+  tui-scrollbar {
+    height: 100%;
+  }
+}
