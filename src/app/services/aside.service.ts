@@ -1,38 +1,20 @@
-import { Injectable, Signal, signal } from '@angular/core';
+import { Injectable, WritableSignal, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AsideService {
-  private $open!: Signal<boolean>;
-  private $expanded!: Signal<boolean>;
-  private $submenu!: Signal<boolean>;
+  public $open!: WritableSignal<boolean>;
+  public $expanded!: WritableSignal<boolean>;
+  public $submenu!: WritableSignal<boolean>;
 
   constructor() {
-    this.setOpen = false;
-    this.setExpanded = false;
-    this.setSubmenu = false;
+    this.$open = signal<boolean>(false);
+    this.$expanded = signal<boolean>(false);
+    this.$submenu = signal<boolean>(false);
   }
 
-  public get getOpen() {
-    return this.$open;
-  }
-
-  public get getExpanded() {
-    return this.$expanded;
-  }
-  public get getSubmenu() {
-    return this.$submenu;
-  }
-
-  public set setOpen(v: boolean) {
-    this.$open = signal(v);
-  }
-
-  public set setExpanded(v: boolean) {
-    this.$expanded = signal(v);
-  }
-  public set setSubmenu(v: boolean) {
-    this.$submenu = signal(v);
+  public toogleOpenSide(): void {
+    this.$expanded.update((state) => !state);
   }
 }

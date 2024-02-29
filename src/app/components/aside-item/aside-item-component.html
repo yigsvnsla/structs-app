@@ -1,0 +1,29 @@
+<tui-hosted-dropdown
+  [canOpen]="!isExpanded"
+  [content]="dropdown"
+  [sided]="true"
+  [open]="dropDownIsExpanded"
+>
+  <button
+    iconLeft="tuiIconSettings"
+    iconRight="tuiIconChevronDown"
+    tuiAppearance="flat"
+    tuiButton
+  >
+    {{this.title}}
+  </button>
+</tui-hosted-dropdown>
+
+<tui-expand [expanded]="isExpanded && subMenuIsExpanded">
+  <button tuiButton>Account</button>
+  <button tuiButton>Notifications</button>
+  <button tuiButton>Privacy</button>
+</tui-expand>
+
+<ng-template #dropdown>
+  <tui-data-list size="s">
+    <button tuiOption>Account</button>
+    <button tuiOption>Notifications</button>
+    <button tuiOption>Privacy</button>
+  </tui-data-list>
+</ng-template>
