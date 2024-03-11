@@ -2,7 +2,6 @@ import { AsideService } from './../../services/aside.service';
 import {
   ChangeDetectionStrategy,
   Component,
-  Signal,
   ViewEncapsulation,
   inject,
 } from '@angular/core';
@@ -12,12 +11,17 @@ import {
   TuiIconModule,
   TuiNavigationModule,
 } from '@taiga-ui/experimental';
+import { AsideItemComponent } from '../aside-item/aside-item.component';
 
 @Component({
   selector: 'app-aside',
   standalone: true,
-  imports: [TuiNavigationModule, TuiIconModule, TuiButtonModule],
-  providers: [],
+  imports: [
+    TuiNavigationModule,
+    TuiIconModule,
+    TuiButtonModule,
+    AsideItemComponent,
+  ],
   templateUrl: './aside.component.html',
   styleUrl: './aside.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,43 +30,54 @@ import {
 export class AsideComponent {
   public asideService: AsideService = inject(AsideService);
 
-  // public $tuiNavigationAside!: Signal<boolean>;
-  // public $hostedDropdownSettingCanOpen!: Signal<boolean>; //!
-  // public $hostedDropdownSettingOpen!: Signal<boolean>;
-
-  private $asideOpen!: Signal<boolean>;
-  private $asideExpanded!: Signal<boolean>;
-  private $asideSubmenu!: Signal<boolean>;
-
-  constructor() {
-    // this.setOpen = this.asideService.getOpen;
-    // this.setExpanded = this.asideService.getExpanded;
-    // this.setSubmenu = this.asideService.getSubmenu;
+  public get getFooterIconOpenState(): string {
+    return this.asideService.$expanded()
+      ? 'tuiIconChevronLeft'
+      : 'tuiIconChevronRight';
   }
 
-  // public get getAsideService() {
-  //   return this.asideService;
-  // }
+  protected routes: any = [
+    {
+      title: 'item 2',
+      path: 'home',
+      iconLeft: 'tuiIconUsers',
+      type: 'link',
+      children: [
+        {
+          title: 'item 3',
+          path: 'home',
+          iconLeft: 'tuiIconHeart',
+          type: 'link',
+        },
+        {
+          title: 'item 1',
+          path: 'home',
+          iconLeft: 'tuiIconSettings',
+          type: 'link',
+        },
+      ],
+    },
+    {
+      title: 'item 3',
+      path: 'home',
+      iconLeft: 'tuiIconHeart',
+      type: 'link',
+    },
+    {
+      title: 'item 1',
+      path: 'home',
+      iconLeft: 'tuiIconSettings',
+      type: 'link',
+    },
+    {
+      type: 'separator',
+    },
 
-  // public get getOpen() {
-  //   return this.$asideOpen;
-  // }
-
-  // public get getExpanded() {
-  //   return this.$asideExpanded;
-  // }
-  // public get getSubmenu() {
-  //   return this.$asideSubmenu;
-  // }
-
-  // public set setOpen(v: Signal<boolean>) {
-  //   this.$asideOpen = computed(v);
-  // }
-
-  // public set setExpanded(v: Signal<boolean>) {
-  //   this.$asideExpanded = computed(v);
-  // }
-  // public set setSubmenu(v: Signal<boolean>) {
-  //   this.$asideSubmenu = computed(v);
-  // }
+    {
+      title: 'item 4',
+      path: 'home',
+      iconLeft: 'tuiIconPlus',
+      type: 'link',
+    },
+  ];
 }

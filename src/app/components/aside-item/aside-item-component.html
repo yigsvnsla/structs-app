@@ -1,29 +1,43 @@
-<tui-hosted-dropdown
-  [canOpen]="!isExpanded"
-  [content]="dropdown"
-  [sided]="true"
-  [open]="dropDownIsExpanded"
->
-  <button
-    iconLeft="tuiIconSettings"
-    iconRight="tuiIconChevronDown"
-    tuiAppearance="flat"
-    tuiButton
+@if (this.children && this.children.length > 0) {
+  <tui-hosted-dropdown
+    [canOpen]="!asideIsOpen"
+    [content]="dropdownContent"
+    [sided]="true"
+    [(open)]="dropDownIsOpen"
   >
-    {{this.title}}
-  </button>
-</tui-hosted-dropdown>
+    <app-aside-link (click)="this.toggleDropdownOpen()" [id]="this.id" [iconLeft]="this.iconLeft" [iconRight]="'tuiIconChevronDown'" >
+      {{ this.title | titlecase }}
+    </app-aside-link>
+    <!-- it's here ref "dropDownIsOpen" -->
+    <ng-template #dropdownContent>
+      <tui-data-list size="s">
+        @for (item of this.children; track $index) {
+          <app-aside-link >
+            {{ this.title | titlecase }}
+          </app-aside-link>
+        }
+      </tui-data-list>
+      <app-aside-link >
+        {{ this.title | titlecase }}
+      </app-aside-link>
+    </ng-template>
+  </tui-hosted-dropdown>
 
-<tui-expand [expanded]="isExpanded && subMenuIsExpanded">
-  <button tuiButton>Account</button>
-  <button tuiButton>Notifications</button>
-  <button tuiButton>Privacy</button>
-</tui-expand>
+  <!-- it's here ref "submenuIsOpen" -->
+  <tui-expand [expanded]="this.asideIsOpen && this.submenuIsOpen">
+    @for (item of this.children; track $index) {
+      <app-aside-link [id]="this.id" [iconLeft]="this.iconLeft">
+        {{ this.title | titlecase }}
+      </app-aside-link>
+    }
+  </tui-expand>
 
-<ng-template #dropdown>
-  <tui-data-list size="s">
-    <button tuiOption>Account</button>
-    <button tuiOption>Notifications</button>
-    <button tuiOption>Privacy</button>
-  </tui-data-list>
-</ng-template>
+}
+
+@else {
+  <app-aside-link [id]="this.id" [iconLeft]="this.iconLeft">
+    {{ this.title | titlecase }}
+  </app-aside-link>
+}
+
+

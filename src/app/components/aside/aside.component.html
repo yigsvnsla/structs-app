@@ -1,26 +1,26 @@
 <aside [tuiNavigationAside]="this.asideService.$expanded()">
-  <button iconLeft="tuiIconSearch" tuiButton>Search</button>
-  <button iconLeft="tuiIconUsers" tuiAppearance="flat" tuiButton>Groups</button>
 
-  <app-aside-item title="pagina 1"></app-aside-item>
+  @for (route of routes; track $index) {
+    @if (route.type == "link") {
+      <app-aside-item
+        [id]="$index"
+        [title]="route.title"
+        [iconLeft]="route.iconLeft"
+        [children]="route.children"
+        [asideIsOpen]="this.asideService.$expanded()"
+      ></app-aside-item>
+    }
+    @else {
+      <hr/>
+    }
+  }
 
-  <button iconLeft="tuiIconHeart" tuiButton></button>
-  <hr />
-
-  <button iconLeft="tuiIconPlus" tuiButton>
-    <span tuiFade>add</span>
-  </button>
 
   <footer>
     <button iconLeft="tuiIconStar" tuiButton>Favorites</button>
     <button
       tuiButton
-      [iconLeft]="'tuiIconChevronRight'"
-      [iconLeft]="
-        this.asideService.$expanded()
-          ? 'tuiIconChevronLeft'
-          : 'tuiIconChevronRight'
-      "
+      [iconLeft]="this.getFooterIconOpenState"
       (click)="this.asideService.toogleOpenSide()"
     >
       Collapse
