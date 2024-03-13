@@ -1,4 +1,4 @@
-import { AsideService } from './../../services/aside.service';
+import { AsideService } from './service/aside.service';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,77 +7,49 @@ import {
 } from '@angular/core';
 
 import {
+  TuiAppearanceModule,
   TuiButtonModule,
   TuiIconModule,
   TuiNavigationModule,
 } from '@taiga-ui/experimental';
-import { AsideItemComponent } from '../aside-item/aside-item.component';
+import { AsideItemComponent } from './aside-item/aside-item.component';
+import { AsideItem } from './interface/aside.interface';
+import {
+  TuiDataListModule,
+  TuiDropdownModule,
+  TuiHostedDropdownModule,
+} from '@taiga-ui/core';
 
 @Component({
   selector: 'app-aside',
   standalone: true,
+  templateUrl: './aside.component.html',
+  styleUrl: './aside.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated,
   imports: [
     TuiNavigationModule,
     TuiIconModule,
     TuiButtonModule,
     AsideItemComponent,
+
+    TuiHostedDropdownModule,
+    TuiDataListModule,
+    TuiIconModule,
+    TuiButtonModule,
+    TuiAppearanceModule,
+    TuiDropdownModule,
+    TuiNavigationModule,
   ],
-  templateUrl: './aside.component.html',
-  styleUrl: './aside.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.Emulated,
 })
 export class AsideComponent {
   public asideService: AsideService = inject(AsideService);
 
+  protected AsideItems: AsideItem[] = this.asideService.items;
+
   public get getFooterIconOpenState(): string {
-    return this.asideService.$expanded()
+    return this.asideService.asideIsOpen
       ? 'tuiIconChevronLeft'
       : 'tuiIconChevronRight';
   }
-
-  protected routes: any = [
-    {
-      title: 'item 2',
-      path: 'home',
-      iconLeft: 'tuiIconUsers',
-      type: 'link',
-      children: [
-        {
-          title: 'item 3',
-          path: 'home',
-          iconLeft: 'tuiIconHeart',
-          type: 'link',
-        },
-        {
-          title: 'item 1',
-          path: 'home',
-          iconLeft: 'tuiIconSettings',
-          type: 'link',
-        },
-      ],
-    },
-    {
-      title: 'item 3',
-      path: 'home',
-      iconLeft: 'tuiIconHeart',
-      type: 'link',
-    },
-    {
-      title: 'item 1',
-      path: 'home',
-      iconLeft: 'tuiIconSettings',
-      type: 'link',
-    },
-    {
-      type: 'separator',
-    },
-
-    {
-      title: 'item 4',
-      path: 'home',
-      iconLeft: 'tuiIconPlus',
-      type: 'link',
-    },
-  ];
 }

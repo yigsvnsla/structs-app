@@ -1,0 +1,15 @@
+.dropdown-title {
+  margin-top: 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+a {
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+tui-icon{
+  height: 1rem;
+}

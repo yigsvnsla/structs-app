@@ -1,23 +1,20 @@
-<aside [tuiNavigationAside]="this.asideService.$expanded()">
+<aside class="navigation-aside" [tuiNavigationAside]="this.asideService.asideIsOpen">
+  <!-- <header> HEADER ASIDE </header> -->
 
-  @for (route of routes; track $index) {
-    @if (route.type == "link") {
-      <app-aside-item
-        [id]="$index"
-        [title]="route.title"
-        [iconLeft]="route.iconLeft"
-        [children]="route.children"
-        [asideIsOpen]="this.asideService.$expanded()"
-      ></app-aside-item>
-    }
-    @else {
-      <hr/>
-    }
+  @for (route of AsideItems; track $index) {
+    <app-aside-item
+      [id]="$index"
+      [pathLink]="route.path"
+      [itemType]="route.type"
+      [title]="route.title"
+      [iconLeft]="route.icon"
+      [children]="route.children"
+    />
   }
 
-
+  <!-- FOOTER -->
   <footer>
-    <button iconLeft="tuiIconStar" tuiButton>Favorites</button>
+    <button tuiButton iconLeft="tuiIconStar">Favorites</button>
     <button
       tuiButton
       [iconLeft]="this.getFooterIconOpenState"
@@ -26,4 +23,5 @@
       Collapse
     </button>
   </footer>
+  <!-- --- -->
 </aside>

@@ -1,0 +1,66 @@
+@switch (this.itemType) {
+  @case (this.ASIDE_ITEM_TYPE.DIVIDER) {
+    <hr />
+  }
+  @case (this.ASIDE_ITEM_TYPE.ITEM) {
+    <!-- Item Alone -->
+    <a
+      tuiButton
+      appearance="flat"
+      [routerLink]="this.pathLink!"
+      [title]="this.title!"
+      [iconLeft]="this.iconLeft!"
+    >
+      {{ this.title | titlecase }}
+    </a>
+  }
+  @case (this.ASIDE_ITEM_TYPE.SUBMENU) {
+    <tui-hosted-dropdown
+      [canOpen]="!this.asideService.asideIsOpen"
+      [content]="dropdownContent"
+      [sided]="true"
+      [(open)]="this.dropDownIsOpen"
+    >
+      <button
+        tuiButton
+        (click)="this.toggleExpandOpen()"
+        [title]="this.title!"
+        [iconLeft]="this.iconLeft!"
+        [iconRight]="this.iconRight!"
+      >
+        {{ this.title | titlecase }}
+      </button>
+
+      <!-- it's here ref "dropDownIsOpen" -->
+      <ng-template #dropdownContent>
+        <section class="dropdown-title">{{this.title | titlecase}}</section>
+        <tui-data-list size="s">
+          @for (item of this.children; track $index) {
+            <a
+              tuiOption
+              [title]="item.title!"
+              [routerLink]="[this.pathLink!, item.path!]"
+
+            >
+              <tui-icon [icon]="item.icon!"/>
+              {{ item.title| titlecase }}
+            </a>
+          }
+        </tui-data-list>
+      </ng-template>
+    </tui-hosted-dropdown>
+    <!-- it's here ref "submenuIsOpen" -->
+    <tui-expand [expanded]="this.submenuIsOpen">
+      @for (item of this.children; track $index) {
+        <a
+          tuiButton
+          [title]="item.title!"
+          [iconLeft]="item.icon!"
+          [routerLink]="[this.pathLink!, item.path!]"
+        >
+          {{ item.title | titlecase }}
+        </a>
+      }
+    </tui-expand>
+  }
+}
