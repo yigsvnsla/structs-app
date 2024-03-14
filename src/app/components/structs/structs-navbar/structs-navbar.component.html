@@ -1,0 +1,16 @@
+<nav tuiNavigationNav [style.position]="'sticky'">
+  <a routerLink=".">
+    <tui-icon icon="tuiIconChevronLeft"></tui-icon>
+    Back
+  </a>
+  <strong>Groups</strong>
+  <tui-badge iconLeft="tuiIconLock">Status</tui-badge>
+  <hr />
+  <tui-tabs>
+    <a tuiTab>List</a>
+    <a tuiTab>Details</a>
+    <a tuiTab>Followers</a>
+  </tui-tabs>
+  <a routerLinkActive [routerLink]="['new']" tuiButton>New Struct</a>
+  <!-- <a tuiButton appearance="secondary">Add</a> -->
+</nav>

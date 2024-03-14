@@ -5,14 +5,19 @@ export const DASHBOARD_STRUCTS_ROUTES: Routes = [
     path: '',
     loadComponent: async () => (await import('./structs.page')).StructsPage,
     children: [
-      // {
-      //   path: '',
-      //   loadComponent: async () => (await import('../../components/dashboard/dashboard.component')).DashboardComponent,
-      // },
-      // {
-      //   path:'structs',
-      //   loadChildren: async ()=> (await import("./structs/structs.routes")).
-      // }
+      {
+        path:'',
+        pathMatch:'full',
+        redirectTo:"list"
+      },
+      {
+        path: 'new',
+        loadComponent: async () => (await import('../../../components/structs/forms/form-new-structs/form-new-structs.component')).FormNewStructsComponent,
+      },
+      {
+        path:'list',
+        loadChildren: async ()=> (await import("../../../components/structs/structs-table/structs-table.component")).StructsTableComponent
+      }
     ],
   },
 ];

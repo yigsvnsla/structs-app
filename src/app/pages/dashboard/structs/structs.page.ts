@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../../components/navbar/navbar.component';
 import { RouterOutlet } from '@angular/router';
+import { StructsNavbarComponent } from '../../../components/structs/structs-navbar/structs-navbar.component';
 
 @Component({
   selector: 'app-structs',
   standalone: true,
   templateUrl: './structs.page.html',
   styleUrl: './structs.page.css',
-  imports: [NavbarComponent, RouterOutlet],
+  imports: [StructsNavbarComponent, RouterOutlet],
 })
 export class StructsPage {}
