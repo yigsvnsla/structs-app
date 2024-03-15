@@ -16,7 +16,7 @@ export const DASHBOARD_STRUCTS_ROUTES: Routes = [
       },
       {
         path:'list',
-        loadChildren: async ()=> (await import("../../../components/structs/structs-table/structs-table.component")).StructsTableComponent
+        loadComponent: async ()=> (await import("../../../components/structs/structs-table/structs-table.component")).StructsTableComponent
       }
     ],
   },

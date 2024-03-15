@@ -1,1 +1,38 @@
-<p>structs-table works!</p>
+<table tuiTable [columns]="columns">
+  <thead tuiThead>
+    <tr tuiThGroup>
+      <th *tuiHead="'name'" tuiTh>Name</th>
+      <th *tuiHead="'email'" tuiTh>E-mail</th>
+      <th *tuiHead="'status'" tuiTh>Status</th>
+      <th *tuiHead="'tags'" tuiTh [sorter]="null">Tags</th>
+    </tr>
+  </thead>
+  <tbody
+    tuiTbody
+    [data]="sortedUsers"
+    *tuiLet="users | tuiTableSort as sortedUsers"
+  >
+    @for (item of sortedUsers; track $index) {
+    <tr tuiTr>
+      <td tuiTd *tuiCell="'name'">
+        {{ item.name }}
+      </td>
+      <td tuiTd *tuiCell="'email'">
+        @if (item.email) {
+        <a tuiLink [href]="'mailto:' + item.email">
+          {{ item.email }}
+        </a>
+        }
+      </td>
+      <td tuiTd *tuiCell="'status'">
+        <div [class]="item.status">{{ item.status }}</div>
+      </td>
+      <td tuiTd *tuiCell="'tags'">
+        @for (tag of item.tags; track $index) {
+        <tui-tag class="tui-space_right-1" [value]="tag" [autoColor]="true" />
+        }
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
