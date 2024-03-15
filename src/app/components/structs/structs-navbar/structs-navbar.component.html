@@ -1,4 +1,4 @@
-<nav tuiNavigationNav [style.position]="'sticky'">
+<nav tuiNavigationNav >
   <a routerLink=".">
     <tui-icon icon="tuiIconChevronLeft"></tui-icon>
     Back
@@ -11,6 +11,6 @@
     <a tuiTab>Details</a>
     <a tuiTab>Followers</a>
   </tui-tabs>
-  <a routerLinkActive [routerLink]="['new']" tuiButton>New Struct</a>
+  <a tuiButton  (click)="this.showDialog()">New Struct</a>
   <!-- <a tuiButton appearance="secondary">Add</a> -->
 </nav>

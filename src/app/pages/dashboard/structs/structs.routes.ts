@@ -12,7 +12,7 @@ export const DASHBOARD_STRUCTS_ROUTES: Routes = [
       },
       {
         path: 'new',
-        loadComponent: async () => (await import('../../../components/structs/forms/form-new-structs/form-new-structs.component')).FormNewStructsComponent,
+        loadComponent: async () => (await import('../../../components/structs/form-new-structs/form-new-structs.component')).FormNewStructsComponent,
       },
       {
         path:'list',
