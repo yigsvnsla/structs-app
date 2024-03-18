@@ -1,4 +1,4 @@
-<nav tuiNavigationNav >
+<nav tuiNavigationNav>
   <a routerLink=".">
     <tui-icon icon="tuiIconChevronLeft"></tui-icon>
     Back
@@ -7,10 +7,8 @@
   <tui-badge iconLeft="tuiIconLock">Status</tui-badge>
   <hr />
   <tui-tabs>
-    <a routerLinkActive [routerLink]="['list']" tuiTab>List</a>
-    <a tuiTab>Details</a>
+    <a tuiTab routerLinkActive [routerLink]="['new']">New Struct</a>
+    <a tuiTab routerLinkActive [routerLink]="['list']">List</a>
     <a tuiTab>Followers</a>
   </tui-tabs>
-  <a tuiButton  (click)="this.showDialog()">New Struct</a>
-  <!-- <a tuiButton appearance="secondary">Add</a> -->
 </nav>

@@ -1,12 +1,46 @@
-<header tuiHeader>
-    <h1 tuiTitle>
-      New Struct
-      <div tuiSubtitle>Generate new struct so easy</div>
-    </h1>
-</header>
-
-<section>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad
-  aliquam asperiores atque autem consequatur cumque cupiditate delectus
-  doloremque doloribus ea earum eius eos error esse est eum eveniet
+<section class="tui-container">
+  <form class="b-form" [formGroup]="this.structForm">
+    <div class="tui-row tui-row_sme">
+      <div class="tui-col_4">
+        <header
+          tuiHeader
+          class="tui-form__header_margin-top_none tui-form__header_margin-bottom_none"
+        >
+          <h1 tuiTitle class="tui-form__header_margin-bottom_none">
+            New Struct
+            <div tuiSubtitle>Generate new struct so easy</div>
+          </h1>
+        </header>
+        <div class="tui-form__row">
+          <tui-input
+            tuiTextfieldSize="m"
+            formControlName="nameValue"
+            tuiHintContent="A tooltip"
+          >
+            Name Struct
+            <input placeholder="e.g: User" tuiTextfield />
+            <span class="tui-required"></span>
+          </tui-input>
+          <tui-error formControlName="nameValue"></tui-error>
+        </div>
+        <div class="tui-form__row"></div>
+      </div>
+    </div>
+  </form>
 </section>
+<div tuiCardLarge tuiSurface="elevated">
+  <div tuiHeader="s" class="">
+    <tui-avatar
+      style="margin: 0px auto"
+      size="m"
+      src="tuiIconShare2Large"
+    ></tui-avatar>
+    <h5
+      tuiTitle
+      class="tui-form__header_margin-top_none tui-form__header_margin-bottom_none"
+    >
+      Title
+    </h5>
+    <div tuiSubtitle>Subtitle</div>
+  </div>
+</div>

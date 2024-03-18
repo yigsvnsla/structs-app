@@ -27,25 +27,5 @@ import { DialogNewStructComponent } from '../dialog-new-struct/dialog-new-struct
   styleUrl: './structs-navbar.component.css',
 })
 export class StructsNavbarComponent {
-  private readonly dialogService: TuiDialogService = inject(TuiDialogService);
-
-  private readonly dialog = this.dialogService.open<number>(
-    new PolymorpheusComponent(DialogNewStructComponent, inject(Injector)),
-    {
-      data: 237,
-      dismissible: true,
-      label: 'How naming the struct',
-    }
-  );
-
-  public showDialog(): void {
-    this.dialog.subscribe({
-      next: (data) => {
-        console.log(`Dialog emitted data = ${data}`);
-      },
-      complete: () => {
-        console.log('Dialog closed');
-      },
-    });
-  }
+  public activeItemIndex: number = 0;
 }
